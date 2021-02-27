@@ -1,0 +1,17 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  vars_files:
+    - /home/cloud_user/ansible/vars/users.yml
+  tasks:
+    - name: create users
+      user:
+        name: "{{ item }}"
+        #state: present
+        state: absent
+        remove: yes
+      #with_items: 
+      #  - "{{ students }}"
+      #  - "{{ faculty }}"
+      loop: "{{ [students,faculty]|flatten(1) }}"  # allow single level flatting
+...

@@ -1,0 +1,31 @@
+---
+- hosts: all
+  tasks:
+  - name: install a package
+    yum:
+      name: package_name
+      state: latest
+
+  - name: Install a list of packages
+    yum:
+      name:
+        - package_name1
+        - package_name2
+      state: present
+  
+  - name: Install rpm from a remote repo
+    yum:
+      name: http://website.com/path/to/rpm
+      state: present
+
+  - name: Install rpm from a local file
+    yum:
+      name: /path/to/file.rpm
+      state: present
+  
+  - name: Remove a package
+    yum:
+      name: package_name
+      state: absent
+
+...

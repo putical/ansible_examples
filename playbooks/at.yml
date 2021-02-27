@@ -1,0 +1,17 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: install at
+      yum:
+        name: at
+        state: latest
+    - name: copy httpd error log
+      at:
+        command: cp /var/log/httpd/error_log /home/cloud_user
+        count: 2
+        units: hours
+        state: present
+
+
+...

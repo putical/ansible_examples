@@ -1,0 +1,14 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: show options for the at module
+      at:
+        command: command_to_run
+        script_file: /path/to/script.sh
+        count: count of units in the future to execute the command or script
+        unit: minutes|hours|days|weeks
+        state: present|absent
+
+
+...

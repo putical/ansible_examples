@@ -1,0 +1,15 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: start and enable httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: start and enable the firewalld service
+      service:
+        name: firewalld
+        state: started
+        enabled: yes
+

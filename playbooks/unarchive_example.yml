@@ -1,0 +1,8 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  tasks:
+    - name: show options for unarchive module
+      unarchive:
+        src: /path/to/file.zip|www.website.com/path/to/file.zip
+        dest: /path/to/unpack/in
+        remote:src: no|yes

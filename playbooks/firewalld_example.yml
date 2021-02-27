@@ -1,0 +1,27 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: add firewalld module:
+      firewalld:
+        zone: public|dmz|internal|external|trusted|etc.
+        service: service_name
+        permanent: yes|no
+        immediate: yes|no
+        state: enabled|disabled|present|absent
+    - name: add firewall rules by port(s)
+      firewalld:
+        zone: public|dmz|internal|external|trusted|etc.
+        port: 8080/tcp|170-179/udp
+        permanent: yes|no
+        immediate: yes|no
+        state: enabled|disabled|present|absent
+    - name: add firewall rules using a Rich Rule
+      firewalld:
+        zone: public|dmz|internal|external|trusted|etc.
+        rich_rule: rule family=ipv4 forward-port port=443 protocol=tcp to-port=8443
+        permanent: yes|no
+        immediate: yes|no
+        state: enabled|disabled|present|absent
+
+...

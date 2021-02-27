@@ -1,0 +1,26 @@
+--- 
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: archive multiple files
+      archive:
+        path:
+          - /home/cloud_user/archive/testDir/testFile2
+          - /home/cloud_user/archive/testDir/testFile4
+          - /home/cloud_user/archive/testDir/testFile6
+        format: gz
+        dest: /home/cloud_user/unarchive/multi/multiFile.tgz
+    - name: archive with wildcard
+      archive:
+        path: /home/cloud_user/archive/testDir/testFile*
+        exclude_path:
+          - /home/cloud_user/archive/testDir/testFile2
+          - /home/cloud_user/archive/testDir/testFile4
+        format: gz
+        dest: /home/cloud_user/unarchive/glob/globExclude.tgz
+    - name: archive a directory
+      archive:
+        path: /home/cloud_user/archive/testDir
+        format: gz
+        dest: /home/cloud_user/unarchive/dirExample/dir.tgz
+...

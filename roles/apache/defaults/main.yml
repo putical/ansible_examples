@@ -1,0 +1,7 @@
+---
+# defaults file for apache
+# define default variables here
+
+apache_content_dir: /webcontent
+apache_http_port: 8080
+apache_admin: cloud_user

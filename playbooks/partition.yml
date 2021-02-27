@@ -1,0 +1,16 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: create partitions
+      parted:
+        device: "{{ item }}"
+        number: 1
+        state: present
+        part_end: 1GiB
+        label: msdos
+        flags: [lvm]
+      loop:
+        - /dev/nvme1n1
+        - /dev/nvme2n1
+...

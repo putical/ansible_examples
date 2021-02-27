@@ -1,0 +1,16 @@
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: Show options for service module
+      service:
+        name: service_name
+        state: started|stopped|restarted|reloaded
+        enabled: yes|no
+        args: additional argments provided on the command line
+    - name: Show options for systemd module
+      systemd:
+        name: service_name
+        state: started|stopped|restarted|reloaded
+        enabled: yes|no
+        daemon_reload: yes|no
+        force: yes|no

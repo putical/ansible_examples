@@ -1,0 +1,17 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: create volume group
+      lvg:
+        pvs: /dev/nvme1n1p1,/dev/nvme2n1p1
+        vg: vg_ansible
+        state: present
+    - name: create logical volume
+      lvol:
+        vg: vg_ansible
+        lv: lv_ansible
+        size: 512m
+        state: present
+
+...

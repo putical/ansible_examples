@@ -1,0 +1,10 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: remove epel repo
+      yum_repository:
+        name: epel
+        file: epel
+        state: absent
+...

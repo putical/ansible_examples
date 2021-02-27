@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: show options for selinux module
+      selinux:
+        configfile: /path/to/config
+        policy: targeted
+        state: enforcing|permissive|disabled
+    - name: show options for seboolean module
+      selinux:
+        name: boolean_name
+        state: no|yes
+        persistent: no|yes
+    - name: show options for sefcontext module
+      sefcontext:
+        ftype: a|d|etc  # a for all files, d for directories, symlinks, block devices, etc..
+        reload: yes|no
+        target: '/path/to/dir(/.*)?'
+        setype: selinux_type
+        state: present|absent
+    - name: apply new SELinux context to the filesystem
+      command: restorecon -irv /path/to/dir
+...
+        

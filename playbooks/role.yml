@@ -1,0 +1,8 @@
+---
+- hosts: webservers
+  become: yes
+  roles:
+    #- apache
+    - role: apache
+      vars: 
+        apache_http_port: 8080 # here we define the variable will overwrite the one in the defaults/main.yml file

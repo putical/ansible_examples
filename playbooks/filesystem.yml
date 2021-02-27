@@ -1,0 +1,19 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: create ext4 filesystem on logical volume
+      filesystem:
+        fstype: ext4
+        dev: /dev/mapper/vg_ansible-lv_ansible
+    - name: mount filesystem
+      mount:
+        path: /mnt/test_mount
+        src: /dev/mapper/vg_ansible-lv_ansible
+        fstype: ext4
+        state: mounted
+        #state: absent  -- remove the mount and edit the fstab file
+        backup: yes
+
+
+...

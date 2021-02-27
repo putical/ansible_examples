@@ -1,0 +1,15 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  tasks:
+    - name: replace line in testFile2
+      lineinfile:
+        path: /tmp/testFile2
+        regexp: "^added.*$"
+        line: "line replaced by lineinfile module"
+    - name: replace line in restFile3
+      replace:
+        path: /tmp/testFile3
+        regexp: ".*module$"
+        replace: "line replaced by replace module"
+
+...

@@ -1,0 +1,26 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: unpack multiFile.tgz
+      unarchive:
+        src: /home/cloud_user/unarchive/multi/multiFile.tgz
+        dest: /home/cloud_user/unarchive/multi
+        remote_src: yes
+    - name: unpack globExclude.tgz
+      unarchive:
+        src: /home/cloud_user/unarchive/glob/globExclude.tgz
+        dest: /home/cloud_user/unarchive/glob
+        remote_src: yes
+    - name: unpack dir.tgz
+      unarchive:
+        src: /home/cloud_user/unarchive/dirExample/dir.tgz
+        dest: /home/cloud_user/unarchive/dirExample
+        remote_src: yes
+    - name: unpack playbooks.tgz
+      unarchive:
+        src: /home/cloud_user/ansible/playbooks.tgz
+        dest: /home/cloud_user/unarchive
+        remote_src: no
+...
+

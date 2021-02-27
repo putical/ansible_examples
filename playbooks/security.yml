@@ -1,0 +1,22 @@
+---
+- hosts: webservers
+  become: yes
+  tasks:
+    - name: set mode to permissive
+      selinux:
+        policy: targeted
+        state: enforcing
+    - name: enable httpd cgi boolean
+      seboolean:
+        name: httpd_enable_cgi
+        state: yes
+        persistent: yes
+    - name: set secontext
+      sefcontext:
+        target: '/webcontent(/.*)?'
+        setype: httpd_sys_content_t
+        state: present
+    - name: run restorecon
+      command: restorecon -irv /webcontent
+
+...

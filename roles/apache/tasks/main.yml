@@ -1,0 +1,37 @@
+---
+# tasks file for apache
+
+- name: create webcontent directory
+  file:
+    path: "{{ apache_content_dir }}"
+    state: directory
+    mode: '0755'
+- name: set secontext on webcontent directory
+  sefcontext:
+    target: '{{ apache_content_dir }}(/.*)?'
+    setype: httpd_sys_content_t
+    state: present
+- name: run restorecon on webcontent
+  command: restorecon -irv {{ apache_content_dir }}
+- name: install apache
+  yum:
+    name: httpd
+    state: latest
+- name: deploy httpd.conf template
+  template:
+    src: httpd.conf.j2
+    dest: /etc/httpd/conf/httpd.conf
+    backup: yes
+  notify: "restart apache"
+- name: deploy index.html template
+  template:
+    src: index.html.j2
+    dest: "{{ apache_content_dir }}/index.html"
+    backup: yes
+- name : start and enable httpd service
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+...
+

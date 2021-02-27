@@ -1,0 +1,16 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  tasks: 
+    - name: create a file
+      file: 
+        path: /tmp/testFile
+        state: touch
+      register: file_var
+    - name: display debug msg
+      debug: msg="Registered output is {{ file_var }}"
+    - name: edit file
+      lineinfile:
+        path: /tmp/testFile
+        line: "The uid is {{ file_var.uid }} and gid is {{ file_var.gid }}"
+
+...

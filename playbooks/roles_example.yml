@@ -1,0 +1,17 @@
+---
+- hosts: webservers
+  become: yes
+  roles:
+    - role_name
+    - role: role_name
+      vars:
+        var_name: value
+
+---
+- hosts: webservers
+  become: yes
+  tasks:
+    - include_role:
+        name: role_name
+      vars:
+        var_name: value

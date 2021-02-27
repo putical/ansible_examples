@@ -1,0 +1,39 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: create groups
+      group:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - students
+        - bayside
+    - name: create zach user
+      user:
+        name: zach
+        comment: zach morris
+        shell: /bin/sh
+        groups: students,bayside
+        append: yes
+        state: absent
+        remove: yes
+    - name: create kelly user
+      user:
+        name: kelly
+        comment: Kelly Kapowski
+        uid: 1050
+        groups: students,bayside
+        append: yes
+        state: absent
+        remove: yes
+    - name: create slate user
+      user:
+        name: slater
+        comment: ac slater
+        uid: 1051
+        groups: students,bayside
+        append: yes
+        state: absent
+        remove: yes
+...

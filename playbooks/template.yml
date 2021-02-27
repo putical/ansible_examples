@@ -1,0 +1,9 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  tasks:
+    - name: push out info template
+      template:
+        src: /home/cloud_user/ansible/templates/info.j2
+        dest: /tmp/info.txt
+
+...

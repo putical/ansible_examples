@@ -1,0 +1,17 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: install packages
+      yum:
+        name:
+          - httpd
+          - vsftpd
+          - vim
+          - firewalld
+        state: latest
+    - name: list all installed packages
+      yum:
+        list: installed
+
+...

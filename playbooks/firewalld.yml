@@ -1,0 +1,32 @@
+---
+- hosts: edewillians2c.mylabserver.com
+  become: yes
+  tasks:
+    - name: add firewall rule for http and https
+      firewalld:
+        zone: public
+        service: "{{ item }}"
+        permanent: yes
+        immediate: yes
+        state: enabled
+        #state: disabled -- 'disabled' is to used to REMOVE a firewall rule
+      loop:
+        - http
+        - https
+    - name: add firewall rules for 8080-8084
+      firewalld:
+        zone: public
+        port: 8080-8084/tcp
+        permanent: yes
+        immediate: yes
+        state: enabled
+        #state: disabled -- 'disabled' is to used to REMOVE a firewall rule
+    - name: add firewall rules using a Rich Rule - forward port 443 to 8443
+      firewalld:
+        rich_rule: rule family=ipv4 forward-port port=443 protocol=tcp to-port=8443
+        permanent: yes
+        immediate: yes
+        state: enabled
+        #state: disabled -- 'disabled' is to used to REMOVE a firewall rule
+
+...
